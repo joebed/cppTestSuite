@@ -13,9 +13,11 @@ The first line in your function should be
 This sets up the test suite. The bool is a flag for verbose: by including it the program will give you the failed test cases right before the end test line.
 
 After RUN_TESTS, follow the following format for your tests:
-```TEST(string) {
+```
+TEST(string) {
     ...
     ASSERT(bool)
-}```
+}
+```
 
 TEST sets up the TestCase with the chosen name and ASSERT will run the test case. By doing this, the TestSuite will keep track of which and how test cases you fail, and will tell you at the end of the output. See example.cpp in the repo for an example. 
