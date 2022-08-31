@@ -4,6 +4,8 @@
 
 class TestSuite {
 public:
+    // REQUIRES: bool, verbose will print the cases failed at the end of execution
+    // EFFECTS: sets up test suite to start s
     TestSuite(bool v) : verbose(v) {
         std::cout << "\n===================TESTING START===================\n\n";
         numFailed = 0;
@@ -72,7 +74,9 @@ private:
 };
 
 #define RUN_TESTS(verbose) TestSuite dawg(verbose);
+// TODO: Implicitly create a TestSuite in case RUN_TESTS not included in main
 
 #define TEST(name) dawg.makeTest(name);
+// TODO: Allow testing for equality of sequences, greater than, less than, double comparison to a set precision by function call
 
 #define ASSERT(exp) dawg.assert(exp);
