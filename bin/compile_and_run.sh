@@ -1,9 +1,7 @@
 #!/bin/bash
-pushd ~/src/c_projects/test_env/
 
-g++ main.cpp
+# Assumes working directory is directory where main is located
+
+g++ example.cpp
 ./a.out
 rm a.out
-
-
-popd
