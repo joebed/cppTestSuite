@@ -6,7 +6,7 @@ The idea is to make this similar to pytest with time, I've learned a lot on this
 Further plans for this project include a more streamlined results system, speeding it up because I KNOW this boy is going to be slow on big tests, maybe creating a thread for each test case and operating them simulataneously? This would be helpful for async functions
 
 ## Usage
-How it works right now is you create a test file, call it main.cpp or whatever you want. Make sure to #include "env.cpp" at the top. 
+Make sure to #include "suite.cpp" at the top of your file. All of these functions will go directly into your main function.
 
 The first line in your function should be 
 <RUN_TESTS(bool)>
