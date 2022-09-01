@@ -9,7 +9,9 @@ Further plans for this project include a more streamlined results system, speedi
 Make sure to #include "suite.cpp" at the top of your file. All of these functions will go directly into your main function. 
 
 The first line in your function should be 
-<RUN_TESTS(bool)>
+```
+RUN_TESTS(bool)
+```
 This sets up the test suite. The bool is a flag for verbose: by including it the program will give you the failed test cases right before the end test line.
 
 After RUN_TESTS, follow the following format for your tests:
@@ -21,3 +23,13 @@ TEST(string) {
 ```
 
 TEST sets up the TestCase with the chosen name and ASSERT will run the test case. By doing this, the TestSuite will keep track of which and how test cases you fail, and will tell you at the end of the output. See example.cpp in the repo for an example. 
+
+### Running
+If you named your test file 'test.cpp', you can run bin/compile.sh to run all of your test files. In future updates, you will be able to input which prefixes you want to test, or by hitting enter without inputting anything it will automatically test all of them. To manually compile, do the following:
+```
+g++ -o <output_file_name> <test_file_name>
+```
+To execute:
+```
+<output_file_name> <OPTIONAL: prefix>
+```
