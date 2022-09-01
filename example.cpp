@@ -1,4 +1,3 @@
-#include <iostream>
 #include "suite.cpp"
 
 // Easy example to see how the macros work
@@ -10,23 +9,23 @@ int inc(int x) {
 }
 
 // Comment out the failing test cases to see how output changes color for easy grasp at how your code is doing
-int main() {
-    RUN_TESTS(true)
+int main(int argc, char** argv) {
+    RUN_TESTS(true, argc, argv)
 
     // Passes
-    TEST("bruh") {
+    TEST(bruh) {
         int x = 5;
         ASSERT(x == 5)
     }
 
     // Fails
-    TEST("nah fam") {
+    TEST(nah fam) {
         int x = 4;
         ASSERT(inc(x) == 5)
     }
 
     // Fails
-    TEST("nah fam6") {
+    TEST(nah fam6) {
         int x = 4;
         ASSERT(inc(x) == 5)
     }

@@ -5,17 +5,17 @@
 class TestSuite {
 public:
     // REQUIRES: bool, verbose will print the cases failed at the end of execution
+    //           string for prefix of all tests to test
     // EFFECTS: sets up test suite to start
-    TestSuite(bool v) : verbose(v) {
+    TestSuite(std::string p, bool v) : curr(TestCase()), numFailed(0), numPassed(0), prefix(p), failed({}), verbose(v){
         std::cout << "\n===================TESTING START===================\n";
-        numFailed = 0;
-        numPassed = 0;
-        curr = TestCase("");
-        failed = {};
     }
+
     ~TestSuite() {
         printResults();
     }
+
+    // EFFECTS: prints statistics
     void printResults() {
         int total = numFailed + numPassed;
         std::cout << "\033[1m======================RESULTS======================\033[0m\n";
@@ -35,24 +35,25 @@ public:
         }
         std::cout << "====================TESTING END====================\n";
     }
+
+    // REQUIRES: a string for the test case name
     void makeTest(const std::string &n) {
         this->curr = TestCase(n);
     }
+    // REQUIRES: an expression that evaluates to a bool should
     void assert(bool exp) {
-        if (this->curr.assert(exp, this->verbose)) {
-            ++numFailed;
-            failed.push_back(this->curr.getName());
-        }
-        else {
-            ++numPassed;
+        if (this->prefix.size() == 0 || this->curr.getName().rfind(this->prefix, 0) == 0){
+            if (this->curr.assert(exp, this->verbose)) {
+                ++numFailed;
+                failed.push_back(this->curr.getName());
+            }
+            else {
+                ++numPassed;
+            }
         }
     }
 
 private:
-    bool verbose;
-    int numPassed;
-    int numFailed;
-    std::vector<std::string> failed;
     class TestCase {
     public:
         TestCase() : name("") {};
@@ -84,14 +85,21 @@ private:
         std::string name;
     };
     TestCase curr;
+    std::string prefix;
+    std::vector<std::string> failed;
+    int numFailed;
+    int numPassed;
+    bool verbose;
 };
 
-#define RUN_TESTS(verbose) TestSuite dawg(verbose);
-// TODO: Implicitly create a TestSuite in case RUN_TESTS not included in main
+#define RUN_TESTS(verbose, argc, argv)              \
+    std::string homeboy = "";                       \
+    if (argc > 1) homeboy = argv[1];                \
+    TestSuite dawg(homeboy, verbose);
 
-#define TEST(name) dawg.makeTest(name);
+
+
+#define TEST(name) dawg.makeTest(#name);
 // TODO: Allow testing for equality of sequences, greater than, less than, double comparison to a set precision by function call
 
 #define ASSERT(exp) dawg.assert(exp);
-
-#define ASSERT_SEQUENCE()
