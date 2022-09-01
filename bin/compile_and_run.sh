@@ -2,6 +2,6 @@
 
 # Assumes working directory is directory where main is located
 
-g++ main.cpp
+g++ example.cpp
 ./a.out
 rm a.out
