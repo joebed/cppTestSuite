@@ -1,5 +1,5 @@
 #include <iostream>
-#include "env.cpp"
+#include "suite.cpp"
 
 // Easy example to see how the macros work
 // USE: RUN_TESTS(verbose) must be included in start of program to initialize TestSuite
